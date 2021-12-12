@@ -1,0 +1,91 @@
+object xdatos: Txdatos
+  Left = 0
+  Top = 0
+  ClientHeight = 542
+  ClientWidth = 677
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 8
+    Width = 249
+    Height = 120
+    DataSource = DataSource1
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'nombre'
+        Width = 75
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'curso'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'expediente'
+        Visible = True
+      end>
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'DriverID=MySQL'
+      'Database=colegio'
+      'User_Name=root'
+      'Password=admin')
+    Connected = True
+    LoginPrompt = False
+    Left = 48
+    Top = 416
+  end
+  object DataSource1: TDataSource
+    DataSet = FDTable1
+    Left = 208
+    Top = 416
+  end
+  object FDTable1: TFDTable
+    IndexFieldNames = 'id'
+    Connection = FDConnection1
+    UpdateOptions.UpdateTableName = 'colegio.alumnos'
+    TableName = 'colegio.alumnos'
+    Left = 136
+    Top = 416
+    object FDTable1id: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object FDTable1nombre: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nombre'
+      Origin = 'nombre'
+      Size = 50
+    end
+    object FDTable1curso: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'curso'
+      Origin = 'curso'
+      Size = 10
+    end
+    object FDTable1expediente: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'expediente'
+      Origin = 'expediente'
+    end
+  end
+end

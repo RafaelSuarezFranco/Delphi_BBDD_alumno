@@ -1,0 +1,72 @@
+object Alta: TAlta
+  Left = 0
+  Top = 0
+  Caption = 'Alta'
+  ClientHeight = 420
+  ClientWidth = 554
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 64
+    Top = 40
+    Width = 36
+    Height = 13
+    Caption = 'nombre'
+    FocusControl = DBEdit1
+  end
+  object Label2: TLabel
+    Left = 64
+    Top = 152
+    Width = 26
+    Height = 13
+    Caption = 'curso'
+    FocusControl = DBEdit2
+  end
+  object Label3: TLabel
+    Left = 64
+    Top = 96
+    Width = 54
+    Height = 13
+    Caption = 'expediente'
+    FocusControl = DBEdit3
+  end
+  object DBEdit1: TDBEdit
+    Left = 64
+    Top = 59
+    Width = 342
+    Height = 21
+    DataField = 'nombre'
+    DataSource = DataSource1
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 64
+    Top = 168
+    Width = 134
+    Height = 21
+    DataField = 'curso'
+    DataSource = DataSource1
+    TabOrder = 1
+  end
+  object DBEdit3: TDBEdit
+    Left = 64
+    Top = 112
+    Width = 134
+    Height = 21
+    DataField = 'expediente'
+    DataSource = DataSource1
+    TabOrder = 2
+  end
+  object DataSource1: TDataSource
+    DataSet = Principal.FDTablealumno
+    Left = 376
+    Top = 160
+  end
+end

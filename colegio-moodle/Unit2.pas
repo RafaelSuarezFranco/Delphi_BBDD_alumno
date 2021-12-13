@@ -65,7 +65,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure ButtonNotaClick(Sender: TObject);
     procedure ButtonHistClick(Sender: TObject);
-
+  
   private
     { Private declarations }
   public
@@ -74,14 +74,12 @@ type
 
 var
   Principal: TPrincipal;
-  asignaturas : TStringList;
-  evaluaciones: TStringList;
 
 implementation
 
 {$R *.dfm}
 
-uses Unit1, Unit3, Unit4;
+uses Unit1, Unit5;
 
 procedure TPrincipal.ButtonAltaClick(Sender: TObject);
 begin
@@ -143,58 +141,8 @@ end;
 
 
 procedure TPrincipal.ButtonHistClick(Sender: TObject);
-var
-fila: TElementoHistorico;
-cantidadfilas: Integer;
-cambiocolor: integer;
-posicion: integer;
-color: TColor;
 begin
-
-  posicion:= 0;
-    //cantidadfilas:= fdtablehistorico.RecordCount;
-    fdtablehistorico.First;
-    while not fdtablehistorico.Eof do
-
-   // for i := 0 to cantidadfilas-1 do
-    begin
-    //por cada registro en historico, creamos una fila, que es un formulario que se añade a otra pantalla.
-
-      if cambiocolor = 0 then
-        begin
-          color := clScrollBar;
-          cambiocolor:=1;
-        end
-        else
-        begin
-          color := cl3DLight;
-          cambiocolor:=0;
-        end;
-
-      fila:=TElementoHistorico.Create(Self);
-      fila.Parent:=Historico.ScrollBox1;
-      fila.Color := color;
-      fila.Left:=0;
-      fila.Top:=posicion;
-      fila.Position := poDesigned;
-      posicion:=posicion+200;
-      //rellenamos los edits con los valores del registro
-      fila.Edit1.Text := fdtablehistoriconombre.Value;
-      fila.Edit2.Text := intToStr(fdtablehistoricoexpediente.Value);
-      fila.Edit3.Text := fdtablehistoricocurso.Value;
-      fila.Edit4.Text := floatToStr(fdtablehistoriconota.Value);
-      fila.Edit5.Text := dateToStr(fdtablehistoricofecha.Value);
-      fila.Edit6.Text := fdtablehistoricoasignatura.Value;
-      fila.Edit7.Text := fdtablehistoricomotivobaja.Value;
-      fila.Edit8.Text := dateToStr(fdtablehistoricofechabaja.Value);
-      fdtablehistorico.Next;
-
-      fila.Visible:=true;
-
-    end;
-
    Historico.showmodal;
-
 end;
 
 procedure TPrincipal.ButtonNotaClick(Sender: TObject);
@@ -210,11 +158,11 @@ begin
     nuevanota := StrtoFloat(InputBox('Editar Nota', 'Nota:', floatToStr(fdtablenotasnota.Value)));
 
     
-      if nuevanota = -1 then //significa que hemos cancelado
-          nuevanota := fdtablenotasnota.Value;
+    if nuevanota = -1 then //significa que hemos cancelado, dejamos el valor que estaba antes.
+    nuevanota := fdtablenotasnota.Value;
 
-      if (nuevanota < 0) or (nuevanota > 10) then
-         ShowMessage('Introduce una nota válida (0-10)');
+    if (nuevanota < 0) or (nuevanota > 10) then
+    ShowMessage('Introduce una nota válida (0-10)');
          
         
     Except  //si metemos algo que no sea float
@@ -245,6 +193,8 @@ if ComboBox1.Text <> 'Sin filtro' then
   end;
 
 end;
+
+
 
 
 procedure TPrincipal.DBGrid1DblClick(Sender: TObject);
@@ -283,11 +233,6 @@ fdtablealumnoclon.open;
 ComboBox1.Items.LoadFromFile('asignaturas.txt');
 ComboBox1.Items.Add('Sin filtro');
 
-  asignaturas := TStringList.Create;
-  evaluaciones := TStringList.Create;
-  //cargamos los ficheros en StringList, funcionan como arrays.
-  asignaturas.LoadFromFile('asignaturas.txt');
-  evaluaciones.LoadFromFile('fechas.txt');
 end;
 
 procedure TPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);

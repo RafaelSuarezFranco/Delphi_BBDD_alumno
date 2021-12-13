@@ -137,12 +137,8 @@
             <Form>Alta</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Unit3.pas">
+        <DCCReference Include="Unit5.pas">
             <Form>Historico</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="Unit4.pas">
-            <Form>ElementoHistorico</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Debug">

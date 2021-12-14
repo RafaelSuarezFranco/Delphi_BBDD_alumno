@@ -86,6 +86,9 @@ procedure TAlta.FormActivate(Sender: TObject);
 begin
     DBRadioGroup1.ItemIndex:= 0;
   //seleccionamos un radio por defecto
+    DBEdit1.SetFocus;
+    DBEdit1.Color := clWhite;
+    DBEdit3.Color := clWhite;
 end;
 
 procedure TAlta.FormCreate(Sender: TObject);
@@ -134,9 +137,9 @@ if ((DBEdit1.GetTextLen = 0) or (DBEdit3.GetTextLen = 0) or (DBRadioGroup1.ItemI
       modalresult:=mrok;
       end;
     Except
-    begin
+     begin
       ShowMessage('Error al crear el nuevo alumno.');
-    end;
+     end;
 
     End;
 

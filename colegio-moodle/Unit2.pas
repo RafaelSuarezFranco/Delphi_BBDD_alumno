@@ -99,7 +99,12 @@ begin
 
   if (buttonSelected = mrOK) then
   begin
+    repeat
      motivo:= InputBox('¿Motivo de la baja?', 'Motivo:', 'FIN DE CURSO');
+     if motivo = '' then
+      Showmessage('Por favor, introduce un motivo.')
+
+    until motivo <> '';
 
       //borramos los campos de notas que tengan el expediente del alumno seleccionado
       //filtramos por expediente y borramos todo
@@ -129,7 +134,7 @@ begin
 
 
      fdtablealumno.delete; //borrar el alumno
-
+     Showmessage('Alumno eliminado');
      fdtablenotas.Filtered:= false;
      fdtablealumno.Refresh;
      fdtablenotas.Refresh;

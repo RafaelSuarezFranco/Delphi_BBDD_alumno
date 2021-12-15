@@ -24,6 +24,7 @@ type
     procedure DBEdit1Exit(Sender: TObject);
     procedure DBEdit3Exit(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     { Private declarations }
@@ -89,6 +90,12 @@ begin
     DBEdit1.SetFocus;
     DBEdit1.Color := clWhite;
     DBEdit3.Color := clWhite;
+end;
+
+procedure TAlta.FormClose(Sender: TObject; var Action: TCloseAction);
+begin  //si pulsamos en la X y no tenemos esto, se insertan registros vacíos
+   principal.fdtablealumno.cancel;
+   principal.fdtablenotas.cancel;
 end;
 
 procedure TAlta.FormCreate(Sender: TObject);
